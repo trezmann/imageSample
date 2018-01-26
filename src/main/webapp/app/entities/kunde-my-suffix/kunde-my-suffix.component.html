@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span>Kundes</span>
+        <button class="btn btn-primary float-right jh-create-entity create-kunde-my-suffix" [routerLink]="['/', { outlets: { popup: ['kunde-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Kunde
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="kundes">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Stammnummer</span></th>
+            <th><span>S Datum</span></th>
+            <th><span>E Datum</span></th>
+            <th><span>Steuernummer</span></th>
+            <th><span>Kunde</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let kunde of kundes ;trackBy: trackId">
+                <td><a [routerLink]="['../kunde-my-suffix', kunde.id ]">{{kunde.id}}</a></td>
+                <td>{{kunde.stammnummer}}</td>
+                <td>{{kunde.sDatum | date:'mediumDate'}}</td>
+                <td>{{kunde.eDatum | date:'mediumDate'}}</td>
+                <td>{{kunde.steuernummer}}</td>
+                <td>
+                    <div *ngIf="kunde.kundeId">
+                        <a [routerLink]="['../mandant-my-suffix', kunde.kundeId  ]" >{{kunde.kundeId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../kunde-my-suffix', kunde.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'kunde-my-suffix/'+ kunde.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'kunde-my-suffix/'+ kunde.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "kurzbez",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bezeichnung",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "aktiv",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180126140014",
+    "entityTableName": "mandant",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

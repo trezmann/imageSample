@@ -1,0 +1,56 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myBildLabel">Create or edit a Bild</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!bild.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="bild.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_bildDatei">Bild Datei</label>
+            <div>
+                <img [src]="'data:' + bild.bildDateiContentType + ';base64,' + bild.bildDatei" style="max-height: 100px;" *ngIf="bild.bildDatei" alt="bild image"/>
+                <div *ngIf="bild.bildDatei" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{bild.bildDateiContentType}}, {{byteSize(bild.bildDatei)}}</span>
+                    <button type="button" (click)="clearInputImage('bildDatei', 'bildDateiContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_bildDatei" (change)="setFileData($event, bild, 'bildDatei', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="bildDatei" id="field_bildDatei"
+                [(ngModel)]="bild.bildDatei" />
+            <input type="hidden" class="form-control" name="bildDateiContentType" id="field_bildDateiContentType"
+                [(ngModel)]="bild.bildDateiContentType" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_bild">Bild</label>
+            <select class="form-control" id="field_bild" name="bild" [(ngModel)]="bild.bildId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="kundeOption.id" *ngFor="let kundeOption of kundes; trackBy: trackKundeById">{{kundeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_bild">Bild</label>
+            <select class="form-control" id="field_bild" name="bild" [(ngModel)]="bild.bildId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="mandantOption.id" *ngFor="let mandantOption of mandants; trackBy: trackMandantById">{{mandantOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

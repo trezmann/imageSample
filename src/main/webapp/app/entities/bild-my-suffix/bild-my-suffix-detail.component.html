@@ -1,0 +1,43 @@
+
+<div *ngIf="bild">
+    <h2><span>Bild</span> {{bild.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Bild Datei</span></dt>
+        <dd>
+            <div *ngIf="bild.bildDatei">
+                <a (click)="openFile(bild.bildDateiContentType, bild.bildDatei)">
+                    <img [src]="'data:' + bild.bildDateiContentType + ';base64,' + bild.bildDatei" style="max-width: 100%;" alt="bild image"/>
+                </a>
+                {{bild.bildDateiContentType}}, {{byteSize(bild.bildDatei)}}
+            </div>
+        </dd>
+        <dt><span>Bild</span></dt>
+        <dd>
+            <div *ngIf="bild.bildId">
+                <a [routerLink]="['/kunde-my-suffix', bild.bildId]">{{bild.bildId}}</a>
+            </div>
+        </dd>
+        <dt><span>Bild</span></dt>
+        <dd>
+            <div *ngIf="bild.bildId">
+                <a [routerLink]="['/mandant-my-suffix', bild.bildId]">{{bild.bildId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'bild-my-suffix/'+ bild.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

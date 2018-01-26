@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "kunde",
+            "otherEntityName": "mandant",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "stammnummer",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sDatum",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "eDatum",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "steuernummer",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180126140015",
+    "entityTableName": "kunde",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

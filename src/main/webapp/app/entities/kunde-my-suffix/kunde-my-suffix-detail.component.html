@@ -1,0 +1,44 @@
+
+<div *ngIf="kunde">
+    <h2><span>Kunde</span> {{kunde.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Stammnummer</span></dt>
+        <dd>
+            <span>{{kunde.stammnummer}}</span>
+        </dd>
+        <dt><span>S Datum</span></dt>
+        <dd>
+            <span>{{kunde.sDatum | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>E Datum</span></dt>
+        <dd>
+            <span>{{kunde.eDatum | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Steuernummer</span></dt>
+        <dd>
+            <span>{{kunde.steuernummer}}</span>
+        </dd>
+        <dt><span>Kunde</span></dt>
+        <dd>
+            <div *ngIf="kunde.kundeId">
+                <a [routerLink]="['/mandant-my-suffix', kunde.kundeId]">{{kunde.kundeId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'kunde-my-suffix/'+ kunde.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
